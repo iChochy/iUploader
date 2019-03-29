@@ -1,0 +1,20 @@
+PODS:
+  - HappyDNS (0.3.15)
+  - Qiniu (7.2.5):
+    - HappyDNS (~> 0.3)
+
+DEPENDENCIES:
+  - Qiniu
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - HappyDNS
+    - Qiniu
+
+SPEC CHECKSUMS:
+  HappyDNS: 00c15e651a347206e58a20503a32a5564589b56a
+  Qiniu: 909b408ee489ea54827e9717be90b94bc9dfbc48
+
+PODFILE CHECKSUM: f17800dc05d1e9fa511918d49817d4ebe3d38de4
+
+COCOAPODS: 1.6.1
