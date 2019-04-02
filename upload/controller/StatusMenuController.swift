@@ -36,36 +36,32 @@ class StatusMenuController:NSObject,NSWindowDelegate,NSDraggingDestination {
         statusItem.image = NSImage(named: "status")
         statusItem.button?.window?.registerForDraggedTypes([NSPasteboard.PasteboardType.fileURL])
         statusItem.button?.window?.delegate = self
-        setStatusTitle()
-        
+        addObserver()
     }
     
-
-    private func hundleNotification(){
-        NotificationCenter.default.addObserver(forName: Notification.Name.init(CustomNotification.name.notification.rawValue), object: nil, queue: nil) { (notification) in
-            DispatchQueue.main.async {
-                self.openPreferencesWindow()
-            }
-        }
+    private func addObserver(){
+        NotificationCenter.default.addObserver(self, selector: #selector(openPreferencesWindow), name: Notification.Name.init(CustomNotification.name.configIsEmpty.rawValue), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setStatusTitle), name: Notification.Name.init(CustomNotification.name.progress.rawValue), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setStatusTitle), name: Notification.Name.init(CustomNotification.name.error.rawValue), object: nil)
+         NotificationCenter.default.addObserver(self, selector: #selector(setStatusTitle), name: Notification.Name.init(CustomNotification.name.success.rawValue), object: nil)
     }
     
-    private func openPreferencesWindow(){
-        let window = NSStoryboard.init(name: "Main", bundle: nil).instantiateController(withIdentifier: "Preferences") as! NSWindowController
-        window.showWindow(self)
+    
+    @objc private func openPreferencesWindow(){
+        let controller = NSStoryboard.init(name: "Main", bundle: nil).instantiateController(withIdentifier: "Preferences") as! NSWindowController
+        controller.showWindow(self)
     }
     
-    private func setStatusTitle(){
-        NotificationCenter.default.addObserver(forName: Notification.Name.init(CustomNotification.name.progress.rawValue), object: nil, queue: nil) { (notification) in
+    @objc private func setStatusTitle(notification:Notification){
+        if notification.name.rawValue == CustomNotification.name.progress.rawValue {
             let value = notification.userInfo?["progress"] as! Float
             DispatchQueue.main.async {
                 self.statusItem.image = nil
-                guard 1.0 != value else {
-                    self.statusItem.title = nil
-                    self.statusItem.image = NSImage(named: "status")
-                    return
-                }
                 self.statusItem.title = String.init(format: "%.0f", value*100)+"%"
             }
+        }else{
+            self.statusItem.title = nil
+            self.statusItem.image = NSImage(named: "status")
         }
     }
     

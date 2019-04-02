@@ -10,10 +10,12 @@ import Cocoa
 import Quartz
 
 class UploadViewController: NSViewController {
-
+    
     @IBOutlet weak var imagesView: NSImageView!
     
     var fileURL:URL!
+    
+    var panel:NSPanel!
     
     var acceptsFirstResponder：Bool = true
     
@@ -22,6 +24,14 @@ class UploadViewController: NSViewController {
         super.viewDidLoad()
         NSApp.activate(ignoringOtherApps: true)
         
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(endUpload), name: NSNotification.Name.init(CustomNotification.name.success.rawValue), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(endUpload), name: NSNotification.Name.init(CustomNotification.name.error.rawValue), object: nil)
+        
+    }
+    
+    @objc private func endUpload(notification:Notification){
+        self.closePanel()
     }
     
     @IBAction func addAction(_ sender: Any) {
@@ -37,35 +47,52 @@ class UploadViewController: NSViewController {
     
     
     @IBAction func updateAction(_ sender: Any) {
-//        guard let fileURL = self.fileURL  else {
-//            return
-//        }
-//        FileUploadService.share.uploadWithURL(fileURL: fileURL)
-        
-        
-        let panel = NSPanel.init()
-        let view = NSView.init()
-        let text = NSTextField.init(string: "222222")
-        let progress = NSProgressIndicator.init()
-        view.addSubview(text)
-        view.addSubview(progress)
-        panel.contentView = view
-        self.view.window?.beginSheet(panel, completionHandler: { (response) in
-            print("222")
-        })
-        self.view.window?.endSheet(panel)
-//        NSPanel.init().beginSheet(self.view.window!) { (response) in
-//            print("222")
-//        }
+        guard let fileURL = self.fileURL  else {
+            createAlert()
+            return
+        }
+        FileUploadService.share.uploadWithURL(fileURL: fileURL)
+        createPanel()
     }
     
-
-    override var representedObject: Any? {
-        didSet {
-        // Update the view, if already loaded.
+    
+    
+    private func createAlert(){
+        let alert:NSAlert = NSAlert.init()
+        alert.messageText = "提示"
+        alert.informativeText = "请选择要上传的图片"
+        alert.beginSheetModal(for: self.view.window!) { (response) in
+            
         }
     }
-
-
+    
+    private func createPanel(){
+        panel = NSPanel.init()
+        panel.contentView = CustomView.init()
+        self.view.window?.beginSheet(panel, completionHandler: { (response) in
+            
+        })
+        
+    }
+    private func closePanel(){
+        guard let panel = panel else {
+            return
+        }
+        self.view.window?.endSheet(panel)
+    }
+    
+    
+    
+    override func viewWillDisappear() {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    override var representedObject: Any? {
+        didSet {
+            // Update the view, if already loaded.
+        }
+    }
+    
+    
 }
 

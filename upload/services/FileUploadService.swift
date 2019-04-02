@@ -36,14 +36,16 @@ class FileUploadService {
         guard let info = image else {
             return
         }
+        guard BaseConfig.share.getConfig() != nil else{
+            return 
+        }
         let imageInfo = compressImage(image: info)
         uploader.uploadWithImage(image: imageInfo)
     }
     
     
     private func compressImage(image:ImageInfo) -> ImageInfo{
-        let baseConfig = BaseConfig.share.getConfig()
-        guard let config = baseConfig else{
+        guard let config = BaseConfig.share.getConfig() else{
             return image
         }
         if config.compress == NSControl.StateValue.on.rawValue {

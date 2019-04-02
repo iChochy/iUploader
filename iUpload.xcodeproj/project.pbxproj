@@ -15,6 +15,7 @@
 		7A61453A2238F1D3006A0F19 /* UserDefaultsUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6145392238F1D3006A0F19 /* UserDefaultsUtil.swift */; };
 		7A61453C2239E968006A0F19 /* QNUploaderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A61453B2239E968006A0F19 /* QNUploaderService.swift */; };
 		7A61455C223A1D71006A0F19 /* StatusMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A61455B223A1D71006A0F19 /* StatusMenuController.swift */; };
+		7A760B5A224E12C100140FDB /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A760B59224E12C100140FDB /* CustomView.swift */; };
 		7AA0A2A722435CB600266C0F /* UploaderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA0A2A622435CB600266C0F /* UploaderService.swift */; };
 		7AA0A2AB2243613200266C0F /* UploadResultDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA0A2AA2243613200266C0F /* UploadResultDelegate.swift */; };
 		7AA0A2AD22436CAF00266C0F /* FileUploadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA0A2AC22436CAF00266C0F /* FileUploadService.swift */; };
@@ -44,6 +45,7 @@
 		7A6145392238F1D3006A0F19 /* UserDefaultsUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsUtil.swift; sourceTree = "<group>"; };
 		7A61453B2239E968006A0F19 /* QNUploaderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QNUploaderService.swift; sourceTree = "<group>"; };
 		7A61455B223A1D71006A0F19 /* StatusMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusMenuController.swift; sourceTree = "<group>"; };
+		7A760B59224E12C100140FDB /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		7AA0A2A622435CB600266C0F /* UploaderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploaderService.swift; sourceTree = "<group>"; };
 		7AA0A2AA2243613200266C0F /* UploadResultDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadResultDelegate.swift; sourceTree = "<group>"; };
 		7AA0A2AC22436CAF00266C0F /* FileUploadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadService.swift; sourceTree = "<group>"; };
@@ -91,17 +93,25 @@
 			children = (
 				7A61455B223A1D71006A0F19 /* StatusMenuController.swift */,
 				7AF874D92241E8C900D95B22 /* PasteboardMonitor.swift */,
-				7A55CD2F223FB038003C1E31 /* CustomServices.swift */,
 				7ABFC8992231023900E4FE07 /* UploadViewController.swift */,
 				7A6145322238AD88006A0F19 /* PreferencesViewController.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
 		};
+		7A760B56224E03D300140FDB /* view */ = {
+			isa = PBXGroup;
+			children = (
+				7A760B59224E12C100140FDB /* CustomView.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
 		7AA0A2A822435CC500266C0F /* services */ = {
 			isa = PBXGroup;
 			children = (
 				7AA0A2AC22436CAF00266C0F /* FileUploadService.swift */,
+				7A55CD2F223FB038003C1E31 /* CustomServices.swift */,
 				7AA0A2B02243785200266C0F /* protocal */,
 				7AA0A2A922435ECC00266C0F /* delegates */,
 				7AA0A2A622435CB600266C0F /* UploaderService.swift */,
@@ -160,6 +170,7 @@
 			children = (
 				7A4D26DE223B4A9E0072F2ED /* AppDelegate.swift */,
 				7A6145342238ADB8006A0F19 /* controller */,
+				7A760B56224E03D300140FDB /* view */,
 				7AA0A2A822435CC500266C0F /* services */,
 				7ABFC8A72232433700E4FE07 /* model */,
 				7ABFC8B02236109A00E4FE07 /* util */,
@@ -344,6 +355,7 @@
 				7A6145372238F15F006A0F19 /* JSONUtil.swift in Sources */,
 				7A55CD30223FB038003C1E31 /* CustomServices.swift in Sources */,
 				7A4D2717223B56BA0072F2ED /* CustomNotification.swift in Sources */,
+				7A760B5A224E12C100140FDB /* CustomView.swift in Sources */,
 				7A61453C2239E968006A0F19 /* QNUploaderService.swift in Sources */,
 				7A61455C223A1D71006A0F19 /* StatusMenuController.swift in Sources */,
 				7A4D26DF223B4A9E0072F2ED /* AppDelegate.swift in Sources */,
@@ -498,7 +510,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ichochy.iupload;
+				PRODUCT_BUNDLE_IDENTIFIER = test.apple.iupload;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
@@ -521,7 +533,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ichochy.iupload;
+				PRODUCT_BUNDLE_IDENTIFIER = test.apple.iupload;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
