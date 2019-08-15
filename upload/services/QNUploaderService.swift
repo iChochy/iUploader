@@ -8,7 +8,9 @@
 
 import Cocoa
 
-class QNUploaderService: UploaderService{
+
+/// 七牛云文件上传服务
+class QNUploaderService: CustomUploaderService{
     
     private var uploaderManager:QNUploadManager!
     
@@ -18,17 +20,43 @@ class QNUploaderService: UploaderService{
     }    
     static let share = QNUploaderService.init()
     
-    override func uploadWithImage(image: ImageInfo) {
-        upload(fileName: image.getFileName(), fileData: image.data)
+
+    override func uploadWithFile(file: FileInfo) {
+        let images:Array<FileInfo> = [file]
+        uploadWithFiles(files: images)
     }
     
-    private func upload(fileName:String,fileData:Data) {
+    override func uploadWithFiles(files: Array<FileInfo>) {
+        let key = UUID.init().uuidString
+        for (index,image) in files.enumerated() {
+            let file = UploadFile.init(key:key,fileName: image.getFileName(), fileData: image.data, index: index, count: files.count)
+            upload(file)
+        }
+    }
+    
+    private func upload(_ file:UploadFile) {
         guard let config = BaseConfig.share.getConfig() else {
             return
         }
-        let token = createQiniuToken(config:config,fileName: fileName)
+        let token = createQiniuToken(config:config,fileName: file.fileName)
         let option = createOption()
-        uploader(fileName:fileName,fileData:fileData,token: token, option: option)
+        uploader(file: file,token: token, option: option)
+    }
+    
+
+    private func uploader(file:UploadFile,token:String,option:QNUploadOption?){
+        uploaderManager.put(file.fileData, key: file.fileName, token: token, complete: { (response, key, result) in
+            guard let result = result else{
+                let message = self.getErrorMessage(response: response)
+                file.message = message
+                self.fileUpload(file)
+                return
+            }
+            let message = result["key"] as! String
+            file.message = message
+            file.status = true
+            self.fileUpload(file)
+        }, option: option)
     }
     
     private func createOption() -> QNUploadOption?{
@@ -38,19 +66,6 @@ class QNUploaderService: UploaderService{
             return false
         }
         return option
-    }
-    
-    private func uploader(fileName:String?,fileData:Data,token:String,option:QNUploadOption?){
-        uploaderManager.put(fileData, key: fileName, token: token, complete: { (response, key, result) in
-            let id = response!.id!
-            guard let result = result else{
-                let message = self.getErrorMessage(response: response)
-                self.fileUploadError(key: id, fileName: fileName!, fileData: fileData, message: message!)
-                return
-            }
-            let message = result["key"] as! String
-            self.fileUploadSuccess(key: id, fileName: fileName!, fileData: fileData, message: message)
-        }, option: option)
     }
     
     private func getUploadConfig() -> QNConfiguration{
@@ -71,8 +86,7 @@ class QNUploaderService: UploaderService{
         guard let error = response.error else {
             return nil
         }
-        let errorMessage:String = (error as NSError).userInfo["error"] as! String
-        return errorMessage
+        return error.localizedDescription
     }
     
     

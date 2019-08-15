@@ -1108,19 +1108,6 @@ DQ
             </objects>
             <point key="canvasLocation" x="74" y="729"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="rvW-z8-nMF">
-            <objects>
-                <customObject id="A7o-5C-jQG" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <viewController id="2CH-Bd-Myv" sceneMemberID="viewController">
-                    <view key="view" id="0iL-ew-2n1">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </view>
-                </viewController>
-            </objects>
-            <point key="canvasLocation" x="1051" y="913"/>
-        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="zDK-Dy-cqd"/>

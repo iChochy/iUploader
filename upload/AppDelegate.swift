@@ -13,18 +13,18 @@ import Carbon
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
-    func appLoad(){
+    func load(){
 //        let _ = BaseConfig.share.getConfig()
         var uploader:Uploader = QNUploaderService.share
-        uploader.delegate = UploadResultService()
+        uploader.delegate = UploadDelegateService()
         FileUploadService.share.uploader = uploader
-        NSApp.servicesProvider = CustomServices() //注册服务
-        PasteboardMonitor.share.monitor() //粘贴板监控
+        NSApp.servicesProvider = CustomSystemServices() //注册服务
+        PasteboardMonitor.share.open() //粘贴板监控
     }
     
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        appLoad()
+        load()
     }
     
      func applicationWillTerminate(_ aNotification: Notification) {

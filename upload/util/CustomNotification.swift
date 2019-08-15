@@ -26,27 +26,36 @@ class CustomNotification :NSObject, NSUserNotificationCenterDelegate{
     
     static let share = CustomNotification.init()
     
-    func sendSuccess(key:String,fileData: Data,message:String){
+    func sendSuccess(message:String){
         let userNotification = NSUserNotification()
-        userNotification.identifier = key
+        userNotification.identifier = UUID.init().uuidString
         userNotification.title = "成功"
-        userNotification.contentImage = NSImage(data: fileData)
-        userNotification.informativeText = message+"上传成功"
-        userNotificationCenter.scheduleNotification(userNotification)
+        userNotification.informativeText = message
+        userNotificationCenter.scheduleNotification(userNotification)//用户系统通知
         successNotification()
     }
     
-    func sendError(key:String,fileData: Data?,message:String?){
+    func sendError(message:String?){
         let userNotification = NSUserNotification()
-        userNotification.identifier = key
+        userNotification.identifier = UUID.init().uuidString
         userNotification.title = "错误"
-        if nil != fileData {
-            userNotification.contentImage = NSImage(data: fileData!)
-        }
-        userNotification.informativeText = "错误信息："+message!
-        userNotificationCenter.scheduleNotification(userNotification)
+        userNotification.informativeText = message
+        userNotificationCenter.scheduleNotification(userNotification)//用户系统通知
         errorNotification()
     }
+    
+
+    
+    private func successNotification(){
+        let notification = Notification.init(name: Notification.Name.init(CustomNotification.name.success.rawValue))
+        NotificationCenter.default.post(notification)//调度通知
+    }
+    
+    private func errorNotification(){
+        let notification = Notification.init(name: Notification.Name.init(CustomNotification.name.error.rawValue))
+        NotificationCenter.default.post(notification)
+    }
+    
     
     func sendProgress(percent:Float){
         var notification = Notification.init(name: Notification.Name.init(CustomNotification.name.progress.rawValue))
@@ -55,10 +64,11 @@ class CustomNotification :NSObject, NSUserNotificationCenterDelegate{
         NotificationCenter.default.post(notification)
     }
     
-    private func successNotification(){
-        let notification = Notification.init(name: Notification.Name.init(CustomNotification.name.success.rawValue))
+    func configIsEmptyNotification(){
+        let notification = Notification.init(name: Notification.Name.init(CustomNotification.name.configIsEmpty.rawValue))
         NotificationCenter.default.post(notification)
     }
+    
     
     func handleSuccessNotification(using block: @escaping (Notification) -> Void) -> NSObjectProtocol{
         return NotificationCenter.default.addObserver(forName: Notification.Name.init(CustomNotification.name.success.rawValue), object: nil, queue: nil) { (notification) in
@@ -69,10 +79,6 @@ class CustomNotification :NSObject, NSUserNotificationCenterDelegate{
     }
     
     
-    private func errorNotification(){
-        let notification = Notification.init(name: Notification.Name.init(CustomNotification.name.error.rawValue))
-        NotificationCenter.default.post(notification)
-    }
     
     func handleErrorNotification(using block: @escaping (Notification) -> Void){
         NotificationCenter.default.addObserver(forName: Notification.Name.init(CustomNotification.name.error.rawValue), object: nil, queue: nil) { (notification) in
@@ -82,12 +88,7 @@ class CustomNotification :NSObject, NSUserNotificationCenterDelegate{
         }
     }
     
-    func configIsEmptyNotification(){
-        let notification = Notification.init(name: Notification.Name.init(CustomNotification.name.configIsEmpty.rawValue))
-        NotificationCenter.default.post(notification)
-    }
-    
-    
+
     func handleConfigIsEmptyNotification(using block: @escaping (Notification) -> Void){
         NotificationCenter.default.addObserver(forName: Notification.Name.init(CustomNotification.name.configIsEmpty.rawValue), object: nil, queue: nil) { (notification) in
             DispatchQueue.main.async {

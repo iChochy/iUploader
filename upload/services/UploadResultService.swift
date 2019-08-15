@@ -8,7 +8,8 @@
 
 import Cocoa
 
-class UploadResultService: UploadResultDelegate {
+class UploadDelegateService: UploadDelegate {
+    
     func fileUploadSuccess(key: String, fileName: String, fileData: Data, message: String) {
         CustomNotification.share.sendSuccess(key: key, fileData: fileData, message: message)
         setPasteboard(fileName: fileName)

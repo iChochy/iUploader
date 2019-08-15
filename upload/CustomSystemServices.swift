@@ -8,9 +8,19 @@
 
 import Cocoa
 
-class CustomServices {
+
+/// 自定义系统服务
+class CustomSystemServices{
 
     
+
+    
+    /// 右键上传服务
+    ///
+    /// - Parameters:
+    ///   - pasteboard: pasteboard description
+    ///   - userData: userData description
+    ///   - error: error description
     @objc func handleServices(_ pasteboard: NSPasteboard, userData: String, error: AutoreleasingUnsafeMutablePointer<NSString>) {
         FileUploadService.share.uploadWithPasteboard(pasteboard: pasteboard)
     }

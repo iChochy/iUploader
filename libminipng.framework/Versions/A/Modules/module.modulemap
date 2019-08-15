@@ -1,0 +1,11 @@
+framework module libminipng {
+  umbrella header "libminipng.h"
+
+  export *
+  module * { export * }
+}
+
+module libminipng.Swift {
+    header "libminipng-Swift.h"
+    requires objc
+}

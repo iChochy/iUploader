@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class ImageInfo {
+class FileInfo {
     
     static var index:Int = 0
 
@@ -17,7 +17,7 @@ class ImageInfo {
     var type:String
     
     init(name:String?,data:Data,type:String) {
-        self.name = ImageInfo.getName(name)
+        self.name = FileInfo.getName(name)
         self.data = data
         self.type = type
     }

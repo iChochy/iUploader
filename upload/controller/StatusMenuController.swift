@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class StatusMenuController:NSObject,NSWindowDelegate,NSDraggingDestination {
+class StatusMenuController:NSWindow,NSWindowDelegate,NSDraggingDestination {
     
     
     @IBOutlet weak var statusMenu: NSMenu!
@@ -65,8 +65,30 @@ class StatusMenuController:NSObject,NSWindowDelegate,NSDraggingDestination {
         }
     }
     
+    
+//    - (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)sender;
+//    - (NSDragOperation)draggingUpdated:(id <NSDraggingInfo>)sender; /* if the destination responded to draggingEntered: but not to draggingUpdated: the return value from draggingEntered: is used */
+//    - (void)draggingExited:(nullable id <NSDraggingInfo>)sender;
+//    - (BOOL)prepareForDragOperation:(id <NSDraggingInfo>)sender;
+//    - (BOOL)performDragOperation:(id <NSDraggingInfo>)sender;
+//    - (void)concludeDragOperation:(nullable id <NSDraggingInfo>)sender;
+//    /* draggingEnded: is implemented as of Mac OS 10.5 */
+//    - (void)draggingEnded:(id<NSDraggingInfo>)sender;
+    
+    
+    
+
+
     func draggingEntered(_ sender: NSDraggingInfo) -> NSDragOperation {
-        return NSDragOperation.copy
+        if FileUploadService.share.availableFile(pasteboard: sender.draggingPasteboard){
+            return NSDragOperation.copy
+        }
+        return NSDragOperation.generic
+    }
+    
+    
+    func prepareForDragOperation(_ sender: NSDraggingInfo) -> Bool {
+        return FileUploadService.share.availableFile(pasteboard: sender.draggingPasteboard)
     }
     
     func performDragOperation(_ sender: NSDraggingInfo) -> Bool {

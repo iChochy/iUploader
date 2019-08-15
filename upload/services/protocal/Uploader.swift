@@ -8,13 +8,20 @@
 
 import Cocoa
 
+
+/// 上传协议
 protocol Uploader {
     
-    var delegate:UploadResultDelegate! {get set}
+    var delegate:UploadDelegate! {get set}
+    
     
     /// 文件上传
     ///
-    /// - Parameter info: 文件信息
-    func uploadWithImage(image: ImageInfo)
+    /// - Parameter image: 文件信息
+    func uploadWithFile(file: FileInfo)
+    /// 文件上传
+    ///
+    /// - Parameter images: 文件信息
+    func uploadWithFiles(files: Array<FileInfo>)
     
 }
