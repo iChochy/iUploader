@@ -65,24 +65,11 @@ class StatusMenuController:NSWindow,NSWindowDelegate,NSDraggingDestination {
         }
     }
     
-    
-//    - (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)sender;
-//    - (NSDragOperation)draggingUpdated:(id <NSDraggingInfo>)sender; /* if the destination responded to draggingEntered: but not to draggingUpdated: the return value from draggingEntered: is used */
-//    - (void)draggingExited:(nullable id <NSDraggingInfo>)sender;
-//    - (BOOL)prepareForDragOperation:(id <NSDraggingInfo>)sender;
-//    - (BOOL)performDragOperation:(id <NSDraggingInfo>)sender;
-//    - (void)concludeDragOperation:(nullable id <NSDraggingInfo>)sender;
-//    /* draggingEnded: is implemented as of Mac OS 10.5 */
-//    - (void)draggingEnded:(id<NSDraggingInfo>)sender;
-    
-    
-    
-
-
     func draggingEntered(_ sender: NSDraggingInfo) -> NSDragOperation {
         if FileUploadService.share.availableFile(pasteboard: sender.draggingPasteboard){
             return NSDragOperation.copy
         }
+        self.statusItem.image = NSImage(named: "status_invalid")
         return NSDragOperation.generic
     }
     
@@ -96,5 +83,10 @@ class StatusMenuController:NSWindow,NSWindowDelegate,NSDraggingDestination {
         FileUploadService.share.uploadWithPasteboard(pasteboard: pasteboard)
         return true
     }
+    
+    func draggingEnded(_ sender: NSDraggingInfo) {
+        self.statusItem.image = NSImage(named: "status")
+    }
+    
     
 }
