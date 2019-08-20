@@ -19,7 +19,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         uploader.delegate = UploadDelegateService()
         FileUploadService.share.uploader = uploader
         NSApp.servicesProvider = CustomSystemServices() //注册服务
-        PasteboardMonitor.share.open() //粘贴板监控
+//        PasteboardMonitor.share.open() //粘贴板监控
     }
     
     

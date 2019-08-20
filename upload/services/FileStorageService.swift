@@ -21,8 +21,11 @@ class FileStorageService {
         return addList(file)
     }
     
-    func getHistory() -> Array<UploadFile>{
-        return fileHistory
+    func getHistory() -> Array<UploadFile>?{
+        if fileHistory.isEmpty{
+            return nil
+        }
+        return fileHistory.reversed();
     }
     
     func getListByKey(_ key:String) -> Array<UploadFile>?{

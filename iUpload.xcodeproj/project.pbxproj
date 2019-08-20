@@ -30,10 +30,10 @@
 		7ABFC89F2231023C00E4FE07 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7ABFC89D2231023C00E4FE07 /* Main.storyboard */; };
 		7ABFC8A92232436000E4FE07 /* UploadPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ABFC8A82232436000E4FE07 /* UploadPolicy.swift */; };
 		7ABFC8AB223257EC00E4FE07 /* QNConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ABFC8AA223257EC00E4FE07 /* QNConfig.swift */; };
-		7AF36BA32302874600E91032 /* libminipng.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AF36BA12302873200E91032 /* libminipng.framework */; };
 		7AF36BA42302874600E91032 /* libminipng.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7AF36BA12302873200E91032 /* libminipng.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7AF36BA62303AB7C00E91032 /* UploadFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF36BA52303AB7C00E91032 /* UploadFile.swift */; };
 		7AF36BA82303BE8300E91032 /* FileStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF36BA72303BE8300E91032 /* FileStorageService.swift */; };
+		7AF36BAA230BC49100E91032 /* PasteboardUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF36BA9230BC49100E91032 /* PasteboardUtil.swift */; };
 		7AF874DA2241E8C900D95B22 /* PasteboardMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF874D92241E8C900D95B22 /* PasteboardMonitor.swift */; };
 /* End PBXBuildFile section */
 
@@ -82,6 +82,7 @@
 		7AF36BA12302873200E91032 /* libminipng.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = libminipng.framework; sourceTree = "<group>"; };
 		7AF36BA52303AB7C00E91032 /* UploadFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadFile.swift; sourceTree = "<group>"; };
 		7AF36BA72303BE8300E91032 /* FileStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorageService.swift; sourceTree = "<group>"; };
+		7AF36BA9230BC49100E91032 /* PasteboardUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardUtil.swift; sourceTree = "<group>"; };
 		7AF874D92241E8C900D95B22 /* PasteboardMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardMonitor.swift; sourceTree = "<group>"; };
 		7AF874DB22423FAE00D95B22 /* iUpload.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iUpload.entitlements; sourceTree = "<group>"; };
 		A2DD750C24BE8B4C81C38CB4 /* Pods-iUpload.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iUpload.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iUpload/Pods-iUpload.debug.xcconfig"; sourceTree = "<group>"; };
@@ -93,7 +94,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A677C9322673A7200515D7F /* Pods_iUpload.framework in Frameworks */,
-				7AF36BA32302874600E91032 /* libminipng.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,8 +209,8 @@
 				7ABB43372244E60D003E6BE6 /* enums */,
 				7ABFC8A82232436000E4FE07 /* UploadPolicy.swift */,
 				7ABFC8AA223257EC00E4FE07 /* QNConfig.swift */,
-				7ABB43352244E495003E6BE6 /* FileInfo.swift */,
 				7AF36BA52303AB7C00E91032 /* UploadFile.swift */,
+				7ABB43352244E495003E6BE6 /* FileInfo.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -222,6 +222,7 @@
 				7A6145392238F1D3006A0F19 /* UserDefaultsUtil.swift */,
 				7A6145352238F15F006A0F19 /* JSONUtil.swift */,
 				7AA0A2B122437BFC00266C0F /* BaseConfig.swift */,
+				7AF36BA9230BC49100E91032 /* PasteboardUtil.swift */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -365,6 +366,7 @@
 			files = (
 				7ABFC8AB223257EC00E4FE07 /* QNConfig.swift in Sources */,
 				7ABFC89A2231023900E4FE07 /* UploadViewController.swift in Sources */,
+				7AF36BAA230BC49100E91032 /* PasteboardUtil.swift in Sources */,
 				7AA0A2A722435CB600266C0F /* CustomUploaderService.swift in Sources */,
 				7A61453A2238F1D3006A0F19 /* UserDefaultsUtil.swift in Sources */,
 				7AA0A2AF22436E5A00266C0F /* Uploader.swift in Sources */,
@@ -544,7 +546,7 @@
 					/usr/local/Cellar/jpeg/9c/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				PRODUCT_BUNDLE_IDENTIFIER = test.apple.iupload;
+				PRODUCT_BUNDLE_IDENTIFIER = test.apple.iuploader;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
@@ -575,7 +577,7 @@
 					/usr/local/Cellar/jpeg/9c/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				PRODUCT_BUNDLE_IDENTIFIER = test.apple.iupload;
+				PRODUCT_BUNDLE_IDENTIFIER = test.apple.iuploader;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;

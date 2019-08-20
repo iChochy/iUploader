@@ -8,19 +8,10 @@
 
 import Cocoa
 
-
 /// 剪贴板监控
 class PasteboardMonitor {
     
-    private init(){}    
-    static let share = PasteboardMonitor.init()
-    
-    var timerSource:DispatchSourceTimer!
-    var changeCount:Int = -1
-    
-    
-    /// 开启监控
-    func open(){
+    private init(){
         timerSource = DispatchSource.makeTimerSource()
         timerSource.schedule(deadline: DispatchTime.now()+3, repeating: DispatchTimeInterval.seconds(1))
         timerSource.setEventHandler {
@@ -34,7 +25,20 @@ class PasteboardMonitor {
             self.changeCount = pasteboard.changeCount
             FileUploadService.share.uploadWithPasteboard(pasteboard: pasteboard)
         }
-        timerSource.resume()
+    }
+    static let share = PasteboardMonitor.init()
+    
+    var timerSource:DispatchSourceTimer!
+    var changeCount:Int = -1
+    
+    
+    /// 开启监控
+    func open(){
+        timerSource.resume();
+    }
+    
+    func close(){
+        timerSource.suspend()
     }
     
 }

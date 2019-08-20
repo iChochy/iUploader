@@ -25,7 +25,7 @@
                                         <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
                                         <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW">
                                             <connections>
-                                                <segue destination="OW6-Om-JNy" kind="show" id="zDK-Dy-cqd"/>
+                                                <segue destination="OW6-Om-JNy" kind="modal" id="r66-s3-Ffb"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
@@ -684,6 +684,7 @@
                 <customObject id="YLy-65-1bz" customClass="NSFontManager" customModule="iUpload" customModuleProvider="target"/>
                 <customObject id="Enj-HJ-7ab" customClass="StatusMenuController" customModule="iUpload" customModuleProvider="target">
                     <connections>
+                        <outlet property="historyRecordItem" destination="vvb-JE-u9M" id="wuz-d8-mfY"/>
                         <outlet property="statusMenu" destination="F5Q-00-Y1Y" id="7SC-Sn-akR"/>
                     </connections>
                 </customObject>
@@ -695,25 +696,67 @@
                             </connections>
                         </menuItem>
                         <menuItem isSeparatorItem="YES" id="iDu-Pu-Qt7"/>
-                        <menuItem title="设置" keyEquivalent="," id="905-cQ-6Lr">
+                        <menuItem title="剪贴板监控" keyEquivalent="C" id="h7K-KY-as8">
+                            <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
                             <connections>
-                                <segue destination="OW6-Om-JNy" kind="show" id="Kfd-sH-kh6"/>
+                                <action selector="pasteboardMonitorSwitch:" target="Enj-HJ-7ab" id="j9R-ME-38i"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="官网" keyEquivalent="m" id="loE-q7-6UR">
-                            <connections>
-                                <action selector="openWeb:" target="Enj-HJ-7ab" id="8HP-i1-Lr1"/>
-                            </connections>
+                        <menuItem title="历史记录" hidden="YES" id="vvb-JE-u9M">
+                            <modifierMask key="keyEquivalentModifierMask"/>
                         </menuItem>
-                        <menuItem title="关于" keyEquivalent="a" id="nf2-kx-wFJ">
-                            <connections>
-                                <action selector="openAbout:" target="Enj-HJ-7ab" id="ngK-99-xfZ"/>
-                            </connections>
-                        </menuItem>
-                        <menuItem title="退出" keyEquivalent="q" id="hnm-lE-t2D">
-                            <connections>
-                                <action selector="quitApp:" target="Enj-HJ-7ab" id="eC9-qH-GvD"/>
-                            </connections>
+                        <menuItem title="iUploader" id="uwt-tO-lVe">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <menu key="submenu" title="iUploader" id="g96-26-XpW">
+                                <items>
+                                    <menuItem title="About Application" id="275-o5-IuK">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="BuJ-ih-ADk"/>
+                                        </connections>
+                                    </menuItem>
+                                    <menuItem isSeparatorItem="YES" id="SPv-sw-gVE"/>
+                                    <menuItem title="Preferences…" keyEquivalent="," id="kmT-yk-d5h">
+                                        <connections>
+                                            <segue destination="OW6-Om-JNy" kind="modal" id="tkm-A0-Mcd"/>
+                                        </connections>
+                                    </menuItem>
+                                    <menuItem title="官网支持" keyEquivalent="w" id="Lwp-PT-U95">
+                                        <connections>
+                                            <action selector="openWeb:" target="Enj-HJ-7ab" id="anI-HG-QY3"/>
+                                        </connections>
+                                    </menuItem>
+                                    <menuItem isSeparatorItem="YES" id="6VM-7o-WrH"/>
+                                    <menuItem title="Services" id="Ojs-h2-06I">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <menu key="submenu" title="Services" systemMenu="services" id="TvO-y1-XFQ"/>
+                                    </menuItem>
+                                    <menuItem isSeparatorItem="YES" id="yQw-1J-7du"/>
+                                    <menuItem title="Hide Application" keyEquivalent="h" id="gry-Xy-EQs">
+                                        <connections>
+                                            <action selector="hide:" target="Ady-hI-5gd" id="s7h-g0-u7b"/>
+                                        </connections>
+                                    </menuItem>
+                                    <menuItem title="Hide Others" keyEquivalent="h" id="XKN-x4-abg">
+                                        <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                        <connections>
+                                            <action selector="hideOtherApplications:" target="Ady-hI-5gd" id="A6M-wc-ihc"/>
+                                        </connections>
+                                    </menuItem>
+                                    <menuItem title="Show All" id="iK7-aB-nWL">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="unhideAllApplications:" target="Ady-hI-5gd" id="fbI-5s-WnW"/>
+                                        </connections>
+                                    </menuItem>
+                                    <menuItem isSeparatorItem="YES" id="jrs-aC-Hwz"/>
+                                    <menuItem title="Quit Application" keyEquivalent="q" id="lto-Ml-qTC">
+                                        <connections>
+                                            <action selector="terminate:" target="Ady-hI-5gd" id="No2-KV-nQy"/>
+                                        </connections>
+                                    </menuItem>
+                                </items>
+                            </menu>
                         </menuItem>
                     </items>
                 </menu>
@@ -1110,6 +1153,6 @@ DQ
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="zDK-Dy-cqd"/>
+        <segue reference="tkm-A0-Mcd"/>
     </inferredMetricsTieBreakers>
 </document>

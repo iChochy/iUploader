@@ -22,8 +22,8 @@ class QNUploaderService: CustomUploaderService{
     
 
     override func uploadWithFile(file: FileInfo) {
-        let images:Array<FileInfo> = [file]
-        uploadWithFiles(files: images)
+        let files:Array<FileInfo> = [file]
+        uploadWithFiles(files: files)
     }
     
     override func uploadWithFiles(files: Array<FileInfo>) {
