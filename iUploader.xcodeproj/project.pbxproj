@@ -72,7 +72,7 @@
 		7ABB43352244E495003E6BE6 /* FileInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileInfo.swift; sourceTree = "<group>"; };
 		7ABB43382244E64E003E6BE6 /* ImageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageType.swift; sourceTree = "<group>"; };
 		7ABB433A2249D0C1003E6BE6 /* image.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = image.xcassets; sourceTree = "<group>"; };
-		7ABFC8942231023900E4FE07 /* iUpload.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iUpload.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7ABFC8942231023900E4FE07 /* iUploader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iUploader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7ABFC8992231023900E4FE07 /* UploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
 		7ABFC89E2231023C00E4FE07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7ABFC8A02231023C00E4FE07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -84,7 +84,7 @@
 		7AF36BA72303BE8300E91032 /* FileStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorageService.swift; sourceTree = "<group>"; };
 		7AF36BA9230BC49100E91032 /* PasteboardUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardUtil.swift; sourceTree = "<group>"; };
 		7AF874D92241E8C900D95B22 /* PasteboardMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardMonitor.swift; sourceTree = "<group>"; };
-		7AF874DB22423FAE00D95B22 /* iUpload.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iUpload.entitlements; sourceTree = "<group>"; };
+		7AF874DB22423FAE00D95B22 /* iUploader.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iUploader.entitlements; sourceTree = "<group>"; };
 		A2DD750C24BE8B4C81C38CB4 /* Pods-iUpload.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iUpload.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iUpload/Pods-iUpload.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -169,23 +169,23 @@
 			isa = PBXGroup;
 			children = (
 				7ABFC8B52236451A00E4FE07 /* Header.h */,
-				7ABFC8962231023900E4FE07 /* upload */,
-				7AF874DB22423FAE00D95B22 /* iUpload.entitlements */,
+				7ABFC8962231023900E4FE07 /* uploader */,
 				7ABFC8952231023900E4FE07 /* Products */,
 				B7A00774F08F266493484337 /* Pods */,
 				219022730B65F6CF9326096B /* Frameworks */,
+				7AF874DB22423FAE00D95B22 /* iUploader.entitlements */,
 			);
 			sourceTree = "<group>";
 		};
 		7ABFC8952231023900E4FE07 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7ABFC8942231023900E4FE07 /* iUpload.app */,
+				7ABFC8942231023900E4FE07 /* iUploader.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		7ABFC8962231023900E4FE07 /* upload */ = {
+		7ABFC8962231023900E4FE07 /* uploader */ = {
 			isa = PBXGroup;
 			children = (
 				7A4D26DE223B4A9E0072F2ED /* AppDelegate.swift */,
@@ -200,7 +200,7 @@
 				7ABFC89D2231023C00E4FE07 /* Main.storyboard */,
 				7ABB433A2249D0C1003E6BE6 /* image.xcassets */,
 			);
-			path = upload;
+			path = uploader;
 			sourceTree = "<group>";
 		};
 		7ABFC8A72232433700E4FE07 /* model */ = {
@@ -239,9 +239,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7ABFC8932231023900E4FE07 /* iUpload */ = {
+		7ABFC8932231023900E4FE07 /* iUploader */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7ABFC8A42231023C00E4FE07 /* Build configuration list for PBXNativeTarget "iUpload" */;
+			buildConfigurationList = 7ABFC8A42231023C00E4FE07 /* Build configuration list for PBXNativeTarget "iUploader" */;
 			buildPhases = (
 				03AEEEFB11D51E2EE880D2AC /* [CP] Check Pods Manifest.lock */,
 				7ABFC8902231023900E4FE07 /* Sources */,
@@ -254,9 +254,9 @@
 			);
 			dependencies = (
 			);
-			name = iUpload;
+			name = iUploader;
 			productName = qupload;
-			productReference = 7ABFC8942231023900E4FE07 /* iUpload.app */;
+			productReference = 7ABFC8942231023900E4FE07 /* iUploader.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -288,7 +288,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 7ABFC88F2231023900E4FE07 /* Build configuration list for PBXProject "iUpload" */;
+			buildConfigurationList = 7ABFC88F2231023900E4FE07 /* Build configuration list for PBXProject "iUploader" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -301,7 +301,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7ABFC8932231023900E4FE07 /* iUpload */,
+				7ABFC8932231023900E4FE07 /* iUploader */,
 			);
 		};
 /* End PBXProject section */
@@ -527,7 +527,7 @@
 			baseConfigurationReference = A2DD750C24BE8B4C81C38CB4 /* Pods-iUpload.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = iUpload.entitlements;
+				CODE_SIGN_ENTITLEMENTS = iUploader.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -536,7 +536,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/upload/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/uploader/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -558,7 +558,7 @@
 			baseConfigurationReference = 30107C4E9EE87C60F8639D02 /* Pods-iUpload.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = iUpload.entitlements;
+				CODE_SIGN_ENTITLEMENTS = iUploader.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -567,7 +567,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/upload/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/uploader/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -587,7 +587,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7ABFC88F2231023900E4FE07 /* Build configuration list for PBXProject "iUpload" */ = {
+		7ABFC88F2231023900E4FE07 /* Build configuration list for PBXProject "iUploader" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7ABFC8A22231023C00E4FE07 /* Debug */,
@@ -596,7 +596,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7ABFC8A42231023C00E4FE07 /* Build configuration list for PBXNativeTarget "iUpload" */ = {
+		7ABFC8A42231023C00E4FE07 /* Build configuration list for PBXNativeTarget "iUploader" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7ABFC8A52231023C00E4FE07 /* Debug */,
