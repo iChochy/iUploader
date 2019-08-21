@@ -64,12 +64,7 @@ class CustomNotification :NSObject, NSUserNotificationCenterDelegate{
         NotificationCenter.default.post(notification)
     }
     
-    func configIsEmptyNotification(){
-        let notification = Notification.init(name: Notification.Name.init(CustomNotification.name.configIsEmpty.rawValue))
-        NotificationCenter.default.post(notification)
-    }
-    
-    
+
     func handleSuccessNotification(using block: @escaping (Notification) -> Void) -> NSObjectProtocol{
         return NotificationCenter.default.addObserver(forName: Notification.Name.init(CustomNotification.name.success.rawValue), object: nil, queue: nil) { (notification) in
             DispatchQueue.main.async {

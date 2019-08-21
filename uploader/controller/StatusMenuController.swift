@@ -90,21 +90,15 @@ class StatusMenuController:NSWindow,NSWindowDelegate,NSDraggingDestination {
 
     
     private func addObserver(){
-        NotificationCenter.default.addObserver(self, selector: #selector(openPreferencesWindow), name: Notification.Name.init(CustomNotification.name.configIsEmpty.rawValue), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setStatusTitle), name: Notification.Name.init(CustomNotification.name.progress.rawValue), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setStatusTitle), name: Notification.Name.init(CustomNotification.name.error.rawValue), object: nil)
          NotificationCenter.default.addObserver(self, selector: #selector(setStatusTitle), name: Notification.Name.init(CustomNotification.name.success.rawValue), object: nil)
     }
     
-    
     @objc private func copyFileURL(_ sender:NSMenuItem){
         PasteboardUtil.setPasteboard(sender.toolTip!)
     }
     
-    @objc private func openPreferencesWindow(){
-        let controller = NSStoryboard.init(name: "Main", bundle: nil).instantiateController(withIdentifier: "Preferences") as! NSWindowController
-        controller.showWindow(self)
-    }
     
     @objc private func setStatusTitle(notification:Notification){
         if notification.name.rawValue == CustomNotification.name.progress.rawValue {
@@ -135,7 +129,7 @@ class StatusMenuController:NSWindow,NSWindowDelegate,NSDraggingDestination {
     
     func performDragOperation(_ sender: NSDraggingInfo) -> Bool {
         let pasteboard = sender.draggingPasteboard
-        FileUploadService.share.uploadWithPasteboard(pasteboard: pasteboard)
+        FileUploadService.share.asyncUploadWithPasteboard(pasteboard: pasteboard)
         return true
     }
     

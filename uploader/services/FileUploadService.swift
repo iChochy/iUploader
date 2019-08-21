@@ -19,7 +19,13 @@ class FileUploadService {
     var uploader:Uploader!
     
     
-    func uploadWithURL(fileURL: URL){
+    func asyncUploadWithURL(fileURL: URL){
+        DispatchQueue.global().async {
+            self.uploadWithURL(fileURL: fileURL)
+        }
+    }
+    
+    private func uploadWithURL(fileURL: URL){
         let file = urlToFile(url: fileURL)
         guard let info = file else {
             return
@@ -28,7 +34,13 @@ class FileUploadService {
         uploader.uploadWithFile(file: imageInfo)
     }
     
-    func uploadWithPasteboard(pasteboard:NSPasteboard){
+    func asyncUploadWithPasteboard(pasteboard:NSPasteboard){
+        DispatchQueue.global().async {
+            self.uploadWithPasteboard(pasteboard: pasteboard)
+        }
+    }
+    
+    private func uploadWithPasteboard(pasteboard:NSPasteboard){
         guard let items = pasteboard.pasteboardItems else {
             return
         }

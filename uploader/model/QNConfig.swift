@@ -16,16 +16,14 @@ class QNConfig: Codable {
     let domain:URL
     let rate:Double
     let compress:Int
-    let conversion:Int
     
-    init(accessKey:String,secretKey:String,bucket:String,domain:String,rate:Double,compress:Int,conversion:Int) {
+    init(accessKey:String,secretKey:String,bucket:String,domain:String,rate:Double,compress:Int) {
         self.accessKey = accessKey
         self.secretKey = secretKey
         self.bucket = bucket
-        self.domain = URL.init(string: domain)!
+        self.domain = URL.init(string: domain) ?? URL.init(string: "https://www.ichochy.com")!
         self.rate = rate
         self.compress = compress
-        self.conversion = conversion
     }
     
     

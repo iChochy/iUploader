@@ -11,6 +11,9 @@ import Cocoa
 /// 剪贴板监控
 class PasteboardMonitor {
     
+    var timerSource:DispatchSourceTimer!
+    var changeCount:Int = -1
+    
     private init(){
         timerSource = DispatchSource.makeTimerSource()
         timerSource.schedule(deadline: DispatchTime.now()+3, repeating: DispatchTimeInterval.seconds(1))
@@ -23,13 +26,11 @@ class PasteboardMonitor {
                 return
             }
             self.changeCount = pasteboard.changeCount
-            FileUploadService.share.uploadWithPasteboard(pasteboard: pasteboard)
+            FileUploadService.share.asyncUploadWithPasteboard(pasteboard: pasteboard)
         }
     }
     static let share = PasteboardMonitor.init()
-    
-    var timerSource:DispatchSourceTimer!
-    var changeCount:Int = -1
+
     
     
     /// 开启监控

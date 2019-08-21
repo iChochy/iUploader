@@ -22,7 +22,7 @@ class CustomSystemServices{
     ///   - userData: userData description
     ///   - error: error description
     @objc func handleServices(_ pasteboard: NSPasteboard, userData: String, error: AutoreleasingUnsafeMutablePointer<NSString>) {
-        FileUploadService.share.uploadWithPasteboard(pasteboard: pasteboard)
+        FileUploadService.share.asyncUploadWithPasteboard(pasteboard: pasteboard)
     }
     
 }

@@ -22,8 +22,6 @@ class UploadViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSApp.activate(ignoringOtherApps: true)
-        
         
         NotificationCenter.default.addObserver(self, selector: #selector(endUpload), name: NSNotification.Name.init(CustomNotification.name.success.rawValue), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(endUpload), name: NSNotification.Name.init(CustomNotification.name.error.rawValue), object: nil)
@@ -51,8 +49,8 @@ class UploadViewController: NSViewController {
             createAlert()
             return
         }
-        FileUploadService.share.uploadWithURL(fileURL: fileURL)
         createPanel()
+        FileUploadService.share.asyncUploadWithURL(fileURL: fileURL)
     }
     
     

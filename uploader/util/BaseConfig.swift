@@ -19,13 +19,21 @@ class BaseConfig {
     }
     
     func getConfig() -> QNConfig?{
-        let baseConfig = UserDefaultsUtil.get(key: "config", type: QNConfig.self)
+        let baseConfig = getDefaultConfig()
         guard let config = baseConfig else {
-            CustomNotification.share.configIsEmptyNotification()
             CustomNotification.share.sendError(message: "未设置配置信息")
             return nil
         }
         return config
     }
+    
+    func getDefaultConfig() -> QNConfig?{
+        let baseConfig = UserDefaultsUtil.get(key: "config", type: QNConfig.self)
+        guard let config = baseConfig else {
+            return nil
+        }
+        return config
+    }
+    
     
 }

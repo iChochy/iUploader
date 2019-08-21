@@ -16,16 +16,14 @@ class PreferencesViewController: NSViewController {
     @IBOutlet weak var domainText: NSTextField!
     @IBOutlet weak var compressButton: NSButton!
     @IBOutlet weak var rateSlider: NSSlider!
-    @IBOutlet weak var conversionButton: NSButton!
+    @IBOutlet weak var rateValue: NSTextFieldCell!
     
     
     @IBAction func compressButtonAction(_ sender: NSButton) {
         if sender.state == NSControl.StateValue.off {
-            rateSlider.isHidden = true
-            conversionButton.isHidden = true
+            rateSlider.isEnabled = false
         }else{
-            rateSlider.isHidden = false
-            conversionButton.isHidden = false
+            rateSlider.isEnabled = true
         }
     }
     
@@ -49,34 +47,42 @@ class PreferencesViewController: NSViewController {
         let domain = domainText.stringValue
         let rate:Double = rateSlider.doubleValue
         let compress:Int = compressButton.state.rawValue
-        let conversion:Int = conversionButton.state.rawValue
-        let config = QNConfig.init(accessKey: accessKey, secretKey: secretKey, bucket: bucket, domain: domain,rate:rate,compress:compress,conversion:conversion)
+        let config = QNConfig.init(accessKey: accessKey, secretKey: secretKey, bucket: bucket, domain: domain,rate:rate,compress:compress)
         BaseConfig.share.setConfig(config: config)
         closeWindow()
     }
     
-
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSApp.activate(ignoringOtherApps: true)
+        rateSlider.target = self
+        rateSlider.action = #selector(sliderAction)
         
-        let value = UserDefaultsUtil.get(key: "config", type: QNConfig.self)
+        let value = BaseConfig.share.getDefaultConfig()
         guard let config = value else {
             return
         }
+        
         accessKeyText.stringValue = config.accessKey
         secretKeyText.stringValue = config.secretKey
         bucketText.stringValue = config.bucket
         domainText.stringValue = config.domain.absoluteString
         compressButton.state = NSControl.StateValue.init(config.compress)
         rateSlider.doubleValue = config.rate
-        conversionButton.state = NSControl.StateValue.init(config.conversion)
-        if compressButton.state == NSControl.StateValue.off {
-            rateSlider.isHidden = true
-            conversionButton.isHidden = true
+        setSliderValue(config.rate)
+        if compressButton.state == NSControl.StateValue.on {
+            rateSlider.isEnabled = true
         }
+    }
+    
+    
+    @objc private func sliderAction(_ sender:NSSlider){
+        setSliderValue(sender.doubleValue)
+        sender.toolTip = "wwwww"
+    }
+    private func setSliderValue(_ value:Double){
+        let value:Int = Int(value*100)
+        rateValue.title = "\(value)%"
     }
     
 }
