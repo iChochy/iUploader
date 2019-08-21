@@ -67,10 +67,7 @@ class UploadViewController: NSViewController {
     private func createPanel(){
         panel = NSPanel.init()
         panel.contentView = CustomView.init()
-        self.view.window?.beginSheet(panel, completionHandler: { (response) in
-            
-        })
-        
+        self.view.window?.beginSheet(panel, completionHandler: nil)
     }
     private func closePanel(){
         guard let panel = panel else {

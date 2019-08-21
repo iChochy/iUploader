@@ -14,13 +14,11 @@ class QNUploaderService: CustomUploaderService{
     
     private var uploaderManager:QNUploadManager!
     
-    private override init() {
+    override init() {
         super.init()
         uploaderManager = QNUploadManager(configuration: getUploadConfig())
-    }    
-    static let share = QNUploaderService.init()
+    }
     
-
     override func uploadWithFile(file: FileInfo) {
         let files:Array<FileInfo> = [file]
         uploadWithFiles(files: files)

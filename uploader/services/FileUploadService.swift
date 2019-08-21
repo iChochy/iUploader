@@ -26,6 +26,7 @@ class FileUploadService {
     }
     
     private func uploadWithURL(fileURL: URL){
+        CustomNotification.share.sendBeginStatus()
         let file = urlToFile(url: fileURL)
         guard let info = file else {
             return
@@ -41,6 +42,7 @@ class FileUploadService {
     }
     
     private func uploadWithPasteboard(pasteboard:NSPasteboard){
+        CustomNotification.share.sendBeginStatus()
         guard let items = pasteboard.pasteboardItems else {
             return
         }

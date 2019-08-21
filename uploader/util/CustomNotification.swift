@@ -10,6 +10,7 @@ import Cocoa
 
 class CustomNotification :NSObject, NSUserNotificationCenterDelegate{
     enum name:String {
+        case begin
         case success
         case error
         case progress
@@ -56,6 +57,11 @@ class CustomNotification :NSObject, NSUserNotificationCenterDelegate{
         NotificationCenter.default.post(notification)
     }
     
+    
+    func sendBeginStatus(){
+        let notification = Notification.init(name: Notification.Name.init(CustomNotification.name.begin.rawValue))
+        NotificationCenter.default.post(notification)
+    }
     
     func sendProgress(percent:Float){
         var notification = Notification.init(name: Notification.Name.init(CustomNotification.name.progress.rawValue))

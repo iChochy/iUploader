@@ -29,7 +29,6 @@ class CustomView: NSView {
         let progress = NSProgressIndicator.init()
         progress.style = NSProgressIndicator.Style.spinning
         progress.startAnimation(nil)
-        self.layer?.backgroundColor = NSColor.red.cgColor
         self.addSubview(progress)
         progress.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

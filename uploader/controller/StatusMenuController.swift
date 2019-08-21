@@ -15,15 +15,16 @@ class StatusMenuController:NSWindow,NSWindowDelegate,NSDraggingDestination {
     
     @IBOutlet weak var historyRecordItem: NSMenuItem!
     
-
-    
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+    
+    let progress = NSProgressIndicator.init()
     
     override func awakeFromNib(){
         statusItem.menu = statusMenu
         statusItem.image = NSImage(named: "status")
         statusItem.button?.window?.registerForDraggedTypes([NSPasteboard.PasteboardType.fileURL])
         statusItem.button?.window?.delegate = self
+        addProgress()
         addObserver()
     }
     
@@ -47,6 +48,19 @@ class StatusMenuController:NSWindow,NSWindowDelegate,NSDraggingDestination {
     }
     
     
+    private func addProgress(){
+        statusItem.button?.addSubview(progress)
+        progress.style = NSProgressIndicator.Style.spinning
+        progress.isHidden = true
+        progress.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            progress.centerXAnchor.constraint(equalTo: (statusItem.button?.centerXAnchor)!),
+            progress.bottomAnchor.constraint(equalTo: ((statusItem.button?.bottomAnchor)!)),
+            progress.widthAnchor.constraint(equalToConstant: 10),
+            progress.heightAnchor.constraint(equalToConstant: 10)
+            ])
+    }
+    
     private func addHistoryRecordItem(){
         let filehistory = FileStorageService.share.getHistory()
         guard let files = filehistory else {
@@ -67,7 +81,6 @@ class StatusMenuController:NSWindow,NSWindowDelegate,NSDraggingDestination {
             menu.addItem(item)
         }
         historyRecordItem.submenu = menu
-        historyRecordItem.isEnabled = true
         historyRecordItem.isHidden = false
     }
     
@@ -83,33 +96,39 @@ class StatusMenuController:NSWindow,NSWindowDelegate,NSDraggingDestination {
         }else{
             image.size = NSSize.init(width: size.width*deafault/size.height, height: deafault)
         }
-        image.draw(in: NSRect.init(x: 0, y: 0, width: deafault, height: deafault))
         return image
     }
     
-
+    
     
     private func addObserver(){
         NotificationCenter.default.addObserver(self, selector: #selector(setStatusTitle), name: Notification.Name.init(CustomNotification.name.progress.rawValue), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setStatusTitle), name: Notification.Name.init(CustomNotification.name.error.rawValue), object: nil)
-         NotificationCenter.default.addObserver(self, selector: #selector(setStatusTitle), name: Notification.Name.init(CustomNotification.name.success.rawValue), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setStatusTitle), name: Notification.Name.init(CustomNotification.name.success.rawValue), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setStatus), name: Notification.Name.init(CustomNotification.name.begin.rawValue), object: nil)
     }
     
     @objc private func copyFileURL(_ sender:NSMenuItem){
         PasteboardUtil.setPasteboard(sender.toolTip!)
     }
     
+    @objc private func setStatus(){
+        DispatchQueue.main.async {
+            self.progress.isHidden = false
+            self.progress.startAnimation(nil)
+        }
+    }
     
     @objc private func setStatusTitle(notification:Notification){
         if notification.name.rawValue == CustomNotification.name.progress.rawValue {
             let value = notification.userInfo?["progress"] as! Float
             DispatchQueue.main.async {
-                self.statusItem.image = nil
                 self.statusItem.title = String.init(format: "%.0f", value*100)+"%"
             }
         }else{
             self.statusItem.title = nil
-            self.statusItem.image = NSImage(named: "status")
+            self.progress.isHidden = true
+            self.progress.stopAnimation(nil)
             addHistoryRecordItem()
         }
     }

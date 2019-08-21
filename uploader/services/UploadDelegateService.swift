@@ -26,9 +26,7 @@ class UploadDelegateService: UploadDelegate {
     
     func fileUploadProgress(key: String, percent: Float) {
         CustomNotification.share.sendProgress(percent: percent)
-        print("fileUploadProgress")
     }
-    
     
     private func fileUploadFinish(_ files:Array<UploadFile>?){
         guard let files = files else{

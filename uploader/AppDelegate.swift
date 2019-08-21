@@ -14,12 +14,11 @@ import Carbon
 class AppDelegate: NSObject, NSApplicationDelegate {
     
     func load(){
-//        let _ = BaseConfig.share.getConfig()
-        var uploader:Uploader = QNUploaderService.share
+        let _ = BaseConfig.share.getConfig()
+        var uploader:Uploader = QNUploaderService()
         uploader.delegate = UploadDelegateService()
         FileUploadService.share.uploader = uploader
         NSApp.servicesProvider = CustomSystemServices() //注册服务
-//        PasteboardMonitor.share.open() //粘贴板监控
     }
     
     
