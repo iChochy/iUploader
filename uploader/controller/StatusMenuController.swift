@@ -17,13 +17,10 @@ class StatusMenuController:NSWindow,NSWindowDelegate,NSDraggingDestination {
     
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
     
-    let progress = NSProgressIndicator.init()
+    var progress = NSProgressIndicator.init()
     
     override func awakeFromNib(){
-        statusItem.menu = statusMenu
-        statusItem.image = NSImage(named: "status")
-        statusItem.button?.window?.registerForDraggedTypes([NSPasteboard.PasteboardType.fileURL])
-        statusItem.button?.window?.delegate = self
+        addStatusBar()
         addProgress()
         addObserver()
     }
@@ -48,16 +45,31 @@ class StatusMenuController:NSWindow,NSWindowDelegate,NSDraggingDestination {
     }
     
     
+    private func addStatusBar(){
+        statusItem.menu = statusMenu
+        let button = statusItem.button!
+        button.image = NSImage(named: "status")
+        button.window?.registerForDraggedTypes([NSPasteboard.PasteboardType.fileURL])
+        button.window?.delegate = self
+        let size = button.frame.size
+        NSLayoutConstraint.activate([
+            button.widthAnchor.constraint(equalToConstant: size.width),
+            button.heightAnchor.constraint(equalToConstant: size.height)
+            ])
+    }
+    
     private func addProgress(){
-        statusItem.button?.addSubview(progress)
+        let button = statusItem.button!
         progress.style = NSProgressIndicator.Style.spinning
+        progress.controlSize = .small
+        progress.minValue = 0
+        progress.maxValue = 1
         progress.isHidden = true
+        button.addSubview(progress)
         progress.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            progress.centerXAnchor.constraint(equalTo: (statusItem.button?.centerXAnchor)!),
-            progress.bottomAnchor.constraint(equalTo: ((statusItem.button?.bottomAnchor)!)),
-            progress.widthAnchor.constraint(equalToConstant: 10),
-            progress.heightAnchor.constraint(equalToConstant: 10)
+            progress.centerXAnchor.constraint(equalTo: button.centerXAnchor),
+            progress.centerYAnchor.constraint(equalTo: button.centerYAnchor)
             ])
     }
     
@@ -81,6 +93,7 @@ class StatusMenuController:NSWindow,NSWindowDelegate,NSDraggingDestination {
             menu.addItem(item)
         }
         historyRecordItem.submenu = menu
+        historyRecordItem.isEnabled = true
         historyRecordItem.isHidden = false
     }
     
@@ -102,33 +115,37 @@ class StatusMenuController:NSWindow,NSWindowDelegate,NSDraggingDestination {
     
     
     private func addObserver(){
-        NotificationCenter.default.addObserver(self, selector: #selector(setStatusTitle), name: Notification.Name.init(CustomNotification.name.progress.rawValue), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(setStatusTitle), name: Notification.Name.init(CustomNotification.name.error.rawValue), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(setStatusTitle), name: Notification.Name.init(CustomNotification.name.success.rawValue), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(setStatus), name: Notification.Name.init(CustomNotification.name.begin.rawValue), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(uploadStatus), name: Notification.Name.init(CustomNotification.name.progress.rawValue), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(uploadStatus), name: Notification.Name.init(CustomNotification.name.error.rawValue), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(uploadStatus), name: Notification.Name.init(CustomNotification.name.success.rawValue), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(beginStatus), name: Notification.Name.init(CustomNotification.name.begin.rawValue), object: nil)
     }
     
     @objc private func copyFileURL(_ sender:NSMenuItem){
         PasteboardUtil.setPasteboard(sender.toolTip!)
     }
     
-    @objc private func setStatus(){
+    @objc private func beginStatus(){
         DispatchQueue.main.async {
+            self.statusItem.button?.image = nil
+            self.progress.isIndeterminate = true
             self.progress.isHidden = false
             self.progress.startAnimation(nil)
         }
     }
     
-    @objc private func setStatusTitle(notification:Notification){
+    @objc private func uploadStatus(notification:Notification){
         if notification.name.rawValue == CustomNotification.name.progress.rawValue {
             let value = notification.userInfo?["progress"] as! Float
             DispatchQueue.main.async {
-                self.statusItem.title = String.init(format: "%.0f", value*100)+"%"
+                self.progress.isIndeterminate = false
+                self.progress.doubleValue  = Double(value)
             }
         }else{
-            self.statusItem.title = nil
-            self.progress.isHidden = true
-            self.progress.stopAnimation(nil)
+            DispatchQueue.main.async {
+                self.progress.stopAnimation(nil)
+                self.statusItem.button?.image = NSImage(named: "status")
+            }
             addHistoryRecordItem()
         }
     }
@@ -153,7 +170,10 @@ class StatusMenuController:NSWindow,NSWindowDelegate,NSDraggingDestination {
     }
     
     func draggingEnded(_ sender: NSDraggingInfo) {
-        self.statusItem.image = NSImage(named: "status")
+        if self.statusItem.button?.image != nil{
+            self.statusItem.button?.image = NSImage(named: "status")
+        }
+
     }
     
     
