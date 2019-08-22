@@ -47,8 +47,8 @@ class StatusMenuController:NSWindow,NSWindowDelegate,NSDraggingDestination {
     
     private func addStatusBar(){
         statusItem.menu = statusMenu
+        statusItem.image = NSImage(named: "status")
         let button = statusItem.button!
-        button.image = NSImage(named: "status")
         button.window?.registerForDraggedTypes([NSPasteboard.PasteboardType.fileURL])
         button.window?.delegate = self
         let size = button.frame.size
@@ -127,7 +127,7 @@ class StatusMenuController:NSWindow,NSWindowDelegate,NSDraggingDestination {
     
     @objc private func beginStatus(){
         DispatchQueue.main.async {
-            self.statusItem.button?.image = nil
+            self.statusItem.image = nil
             self.progress.isIndeterminate = true
             self.progress.isHidden = false
             self.progress.startAnimation(nil)
@@ -144,20 +144,33 @@ class StatusMenuController:NSWindow,NSWindowDelegate,NSDraggingDestination {
         }else{
             DispatchQueue.main.async {
                 self.progress.stopAnimation(nil)
-                self.statusItem.button?.image = NSImage(named: "status")
+                self.progress.isHidden = true
+                self.statusItem.image = NSImage(named: "status")
             }
             addHistoryRecordItem()
         }
     }
     
+    
+//    - (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)sender;
+//    - (NSDragOperation)draggingUpdated:(id <NSDraggingInfo>)sender; /* if the destination responded to draggingEntered: but not to draggingUpdated: the return value from draggingEntered: is used */
+//    - (void)draggingExited:(nullable id <NSDraggingInfo>)sender;
+//    - (BOOL)prepareForDragOperation:(id <NSDraggingInfo>)sender;
+//    - (BOOL)performDragOperation:(id <NSDraggingInfo>)sender;
+//    - (void)concludeDragOperation:(nullable id <NSDraggingInfo>)sender;
+    
     func draggingEntered(_ sender: NSDraggingInfo) -> NSDragOperation {
         if FileUploadService.share.availableFile(pasteboard: sender.draggingPasteboard){
+            self.statusItem.image = NSImage(named: "NSShareTemplate")
             return NSDragOperation.copy
         }
         self.statusItem.image = NSImage(named: "status_invalid")
         return NSDragOperation.generic
     }
     
+    func draggingExited(_ sender: NSDraggingInfo?) {
+        self.statusItem.image = NSImage(named: "status")
+    }
     
     func prepareForDragOperation(_ sender: NSDraggingInfo) -> Bool {
         return FileUploadService.share.availableFile(pasteboard: sender.draggingPasteboard)
@@ -167,13 +180,6 @@ class StatusMenuController:NSWindow,NSWindowDelegate,NSDraggingDestination {
         let pasteboard = sender.draggingPasteboard
         FileUploadService.share.asyncUploadWithPasteboard(pasteboard: pasteboard)
         return true
-    }
-    
-    func draggingEnded(_ sender: NSDraggingInfo) {
-        if self.statusItem.button?.image != nil{
-            self.statusItem.button?.image = NSImage(named: "status")
-        }
-
     }
     
     
