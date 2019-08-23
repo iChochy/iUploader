@@ -26,13 +26,11 @@ class FileUploadService {
     }
     
     private func uploadWithURL(fileURL: URL){
-        CustomNotification.share.sendBeginStatus()
-        let file = urlToFile(url: fileURL)
-        guard let info = file else {
+        let info = urlToFile(url: fileURL)
+        guard let file = info else {
             return
         }
-        let imageInfo = imageCompression(image: info)
-        uploader.uploadWithFile(file: imageInfo)
+        uploadWithFile(files: [file])
     }
     
     func asyncUploadWithPasteboard(pasteboard:NSPasteboard){
@@ -42,40 +40,49 @@ class FileUploadService {
     }
     
     private func uploadWithPasteboard(pasteboard:NSPasteboard){
-        CustomNotification.share.sendBeginStatus()
         guard let items = pasteboard.pasteboardItems else {
             return
         }
-        var images = Array<FileInfo>();
+        var files = Array<FileInfo>();
         for item in items {
             let file = pasteboardToFile(item: item)
             guard let info = file else {
                 continue
             }
-            let imageInfo = imageCompression(image: info)
-            images.append(imageInfo)
+            files.append(info)
         }
-        uploader.uploadWithFiles(files: images)
-    }    
-    private func imageCompression(image:FileInfo) -> FileInfo{
-        guard let config = BaseConfig.share.getConfig() else{
-            return image
-        }
-        if config.compress == NSControl.StateValue.on.rawValue {
-            image.data = toMin(image: image, maximum: config.rate)
-        }
-        return image
+        uploadWithFile(files: files)
     }
     
-    private func toMin(image:FileInfo,maximum:Double)-> Data{
-        if(ImageType.png.rawValue.elementsEqual(image.type)){
-            return minipng.data2Data(image.data, Int(maximum*100))!
-        }else if(ImageType.jpg.rawValue.elementsEqual(image.type)){
-            let properties =  [NSBitmapImageRep.PropertyKey.compressionFactor:maximum]
-            let fileType = ImageType.fileType(type: image.type);
-            return NSBitmapImageRep.init(data: image.data)!.representation(using: fileType, properties:properties)!
+    private func uploadWithFile(files:Array<FileInfo>){
+        if files.isEmpty{
+            return
         }
-        return image.data;
+        guard let config = BaseConfig.share.getConfig() else{
+            return
+        }
+        CustomNotification.share.sendBeginStatus()
+        if config.compress == NSControl.StateValue.on.rawValue {
+            imageCompression(files: files,maximum: config.rate)
+        }
+        uploader.uploadWithFiles(files: files)
+    }
+    
+    private func imageCompression(files:Array<FileInfo>,maximum:Double){
+        files.forEach { (file) in
+            file.data = toMin(file: file, maximum:maximum)
+        }
+    }
+    
+    private func toMin(file:FileInfo,maximum:Double)-> Data{
+        if(ImageType.png.rawValue.elementsEqual(file.type)){
+            return minipng.data2Data(file.data, Int(maximum*100))!
+        }else if(ImageType.jpg.rawValue.elementsEqual(file.type)){
+            let properties =  [NSBitmapImageRep.PropertyKey.compressionFactor:maximum]
+            let fileType = ImageType.fileType(type: file.type);
+            return NSBitmapImageRep.init(data: file.data)!.representation(using: fileType, properties:properties)!
+        }
+        return file.data;
     }
     
     
@@ -91,9 +98,6 @@ class FileUploadService {
         }
         let filePath = item.string(forType: NSPasteboard.PasteboardType.fileURL)
         if filePath != nil {
-            if isFolder(filePath!) {
-                return nil
-            }
             let url = URL.init(string: filePath!)!
             return urlToFile(url: url)
         }
@@ -121,10 +125,14 @@ class FileUploadService {
     
     private func urlToFile(url:URL) -> FileInfo?{
         let fileName = url.lastPathComponent
-        let data = try! Data.init(contentsOf: url)
-        let name = NSString.init(string: fileName).deletingPathExtension
-        let type = NSString.init(string: fileName).pathExtension
-        return FileInfo.init(name: name, data: data, type: type)
+        do {
+            let data = try Data.init(contentsOf: url)
+            let name = NSString.init(string: fileName).deletingPathExtension
+            let type = NSString.init(string: fileName).pathExtension
+            return FileInfo.init(name: name, data: data, type: type)
+        } catch  {
+            return nil
+        }
     }
     
     private func isFolder(_ filePath:String) -> Bool{

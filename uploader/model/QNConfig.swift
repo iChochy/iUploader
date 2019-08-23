@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class QNConfig: Codable {
+struct QNConfig: Codable {
     
     let accessKey:String
     let secretKey:String

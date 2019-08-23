@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class UploadPolicy: Codable {
+struct UploadPolicy: Codable {
     let scope:String;
     let deadline:Int;
     

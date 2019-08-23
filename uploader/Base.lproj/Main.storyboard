@@ -709,14 +709,14 @@
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <menu key="submenu" title="iUploader" id="g96-26-XpW">
                                 <items>
-                                    <menuItem title="About Application" id="275-o5-IuK">
+                                    <menuItem title="关于 iUploader" id="275-o5-IuK">
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                         <connections>
                                             <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="BuJ-ih-ADk"/>
                                         </connections>
                                     </menuItem>
                                     <menuItem isSeparatorItem="YES" id="SPv-sw-gVE"/>
-                                    <menuItem title="Preferences…" keyEquivalent="," id="kmT-yk-d5h">
+                                    <menuItem title="偏好设置..." keyEquivalent="," id="kmT-yk-d5h">
                                         <connections>
                                             <segue destination="OW6-Om-JNy" kind="modal" id="tkm-A0-Mcd"/>
                                         </connections>
@@ -727,30 +727,30 @@
                                         </connections>
                                     </menuItem>
                                     <menuItem isSeparatorItem="YES" id="6VM-7o-WrH"/>
-                                    <menuItem title="Services" id="Ojs-h2-06I">
+                                    <menuItem title="服务" id="Ojs-h2-06I">
                                         <modifierMask key="keyEquivalentModifierMask"/>
-                                        <menu key="submenu" title="Services" systemMenu="services" id="TvO-y1-XFQ"/>
+                                        <menu key="submenu" title="服务" systemMenu="services" id="TvO-y1-XFQ"/>
                                     </menuItem>
                                     <menuItem isSeparatorItem="YES" id="yQw-1J-7du"/>
-                                    <menuItem title="Hide Application" keyEquivalent="h" id="gry-Xy-EQs">
+                                    <menuItem title="隐藏 iUploader" keyEquivalent="h" id="gry-Xy-EQs">
                                         <connections>
                                             <action selector="hide:" target="Ady-hI-5gd" id="s7h-g0-u7b"/>
                                         </connections>
                                     </menuItem>
-                                    <menuItem title="Hide Others" keyEquivalent="h" id="XKN-x4-abg">
+                                    <menuItem title="隐藏其它" keyEquivalent="h" id="XKN-x4-abg">
                                         <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                         <connections>
                                             <action selector="hideOtherApplications:" target="Ady-hI-5gd" id="A6M-wc-ihc"/>
                                         </connections>
                                     </menuItem>
-                                    <menuItem title="Show All" id="iK7-aB-nWL">
+                                    <menuItem title="全部显示" id="iK7-aB-nWL">
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                         <connections>
                                             <action selector="unhideAllApplications:" target="Ady-hI-5gd" id="fbI-5s-WnW"/>
                                         </connections>
                                     </menuItem>
                                     <menuItem isSeparatorItem="YES" id="jrs-aC-Hwz"/>
-                                    <menuItem title="Quit Application" keyEquivalent="q" id="lto-Ml-qTC">
+                                    <menuItem title="退出" keyEquivalent="q" id="lto-Ml-qTC">
                                         <connections>
                                             <action selector="terminate:" target="Ady-hI-5gd" id="No2-KV-nQy"/>
                                         </connections>
@@ -1114,8 +1114,8 @@ DQ
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="grayBezel" id="OUA-og-2jv"/>
                             </imageView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="u0l-eL-PGO">
-                                <rect key="frame" x="87" y="44" width="49" height="32"/>
-                                <buttonCell key="cell" type="push" title="+" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="SaD-5a-hgm">
+                                <rect key="frame" x="87" y="44" width="47" height="32"/>
+                                <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSAddTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="SaD-5a-hgm">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -1145,6 +1145,9 @@ DQ
             <point key="canvasLocation" x="75" y="766"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="NSAddTemplate" width="11" height="11"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="tkm-A0-Mcd"/>
     </inferredMetricsTieBreakers>

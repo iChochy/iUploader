@@ -164,7 +164,6 @@ class StatusMenuController:NSWindow,NSWindowDelegate,NSDraggingDestination {
             self.statusItem.image = NSImage(named: "NSShareTemplate")
             return NSDragOperation.copy
         }
-        self.statusItem.image = NSImage(named: "status_invalid")
         return NSDragOperation.generic
     }
     
