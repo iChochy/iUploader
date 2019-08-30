@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  qupload
+//  iUploader
 //
 //  Created by MLeo on 2019/3/7.
 //  Copyright © 2019年 iChochy. All rights reserved.

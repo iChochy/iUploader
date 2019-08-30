@@ -1,6 +1,6 @@
 //
 //  Header.h
-//  qupload
+//  iUploader
 //
 //  Created by MLeo on 2019/3/11.
 //  Copyright © 2019年 iChochy. All rights reserved.
