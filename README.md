@@ -1,5 +1,5 @@
 
-# ![Cloud](http://images.chochy.cn/Cloud.png)  iUploader
+# ![Cloud](http://images.ichochy.com/Cloud.png)  iUploader
 
 ### 软件介绍：  
 `iUploader`主要功能将文件上传至七牛云，返回 `Markdown` 格式的链接到剪贴板  
@@ -18,10 +18,10 @@
 
 ### 截图：  
 **菜单**  
-![15665509097289961](http://images.chochy.cn/15665509097289961.png)  
+![15665509097289961](http://images.ichochy.com/15665509097289961.png)  
 
 **配置**  
-![15665510536547632](http://images.chochy.cn/15665510536547632.png)  
+![15665510536547632](http://images.ichochy.com/15665510536547632.png)  
 
 
 ### 更新：  
@@ -34,7 +34,7 @@
 
 ### 下载：  
 [iUploader.dmg-GitHub](https://github.com/iChochy/iUploader/releases/download/2.0.5/iUploader.dmg)   
-[iUploader.dmg-七牛云](http://www.chochy.cn/iUploader.dmg)  
+[iUploader.dmg-七牛云](http://files.ichochy.com/iUploader.dmg)  
 [https://github.com/iChochy/iUploader/releases/download/2.0.5/iUploader.dmg](https://github.com/iChochy/iUploader/releases/download/2.0.5/iUploader.dmg)   
 
 ---
