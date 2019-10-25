@@ -21,8 +21,7 @@ class PasteboardMonitor {
             let pasteboard = NSPasteboard.general
             if(self.changeCount == -1){
                 self.changeCount = pasteboard.changeCount
-            }
-            if self.changeCount == pasteboard.changeCount {
+            }else if self.changeCount == pasteboard.changeCount {
                 return
             }
             self.changeCount = pasteboard.changeCount
@@ -35,6 +34,7 @@ class PasteboardMonitor {
     
     /// 开启监控
     func open(){
+        self.changeCount = -1
         timerSource.resume();
     }
     
