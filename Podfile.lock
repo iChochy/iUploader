@@ -9,7 +9,7 @@ DEPENDENCIES:
   - Qiniu
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - HappyDNS
     - libminipng
     - Qiniu
@@ -21,4 +21,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: c07fd7e8cf11e398294b9d29c5d8601367bd2a71
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.8.4

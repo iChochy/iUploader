@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15400"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -624,7 +624,7 @@
                                         <menuItem title="Show Sidebar" keyEquivalent="s" id="kIP-vf-haE">
                                             <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
                                             <connections>
-                                                <action selector="toggleSourceList:" target="Ady-hI-5gd" id="iwa-gc-5KM"/>
+                                                <action selector="toggleSidebar:" target="Ady-hI-5gd" id="iwa-gc-5KM"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Enter Full Screen" keyEquivalent="f" id="4J7-dP-txa">
@@ -814,17 +814,17 @@
                             <box title="设置" translatesAutoresizingMaskIntoConstraints="NO" id="r2S-3G-YYt">
                                 <rect key="frame" x="17" y="56" width="416" height="244"/>
                                 <view key="contentView" id="ynR-Px-cMf">
-                                    <rect key="frame" x="2" y="2" width="412" height="224"/>
+                                    <rect key="frame" x="3" y="3" width="410" height="224"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="12" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WD8-oT-QsB">
-                                            <rect key="frame" x="68" y="49" width="277" height="157"/>
+                                            <rect key="frame" x="67" y="49" width="277" height="157"/>
                                             <subviews>
                                                 <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BW8-Cp-YdG">
                                                     <rect key="frame" x="0.0" y="135" width="277" height="22"/>
                                                     <subviews>
                                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RnF-51-Vfr">
-                                                            <rect key="frame" x="-2" y="3" width="73" height="17"/>
+                                                            <rect key="frame" x="-2" y="3" width="73" height="16"/>
                                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" alignment="right" title="accessKey:" id="z2o-L5-f7Z">
                                                                 <font key="font" metaFont="system"/>
                                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -856,7 +856,7 @@
                                                     <rect key="frame" x="0.0" y="101" width="277" height="22"/>
                                                     <subviews>
                                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1gO-z8-HyH">
-                                                            <rect key="frame" x="-2" y="3" width="73" height="17"/>
+                                                            <rect key="frame" x="-2" y="3" width="73" height="16"/>
                                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" alignment="right" title="secretKey:" id="txf-0C-ic7">
                                                                 <font key="font" metaFont="system"/>
                                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -891,7 +891,7 @@
                                                     <rect key="frame" x="0.0" y="67" width="277" height="22"/>
                                                     <subviews>
                                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BOU-8z-qMe">
-                                                            <rect key="frame" x="-2" y="3" width="73" height="17"/>
+                                                            <rect key="frame" x="-2" y="3" width="73" height="16"/>
                                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" alignment="right" title="bucket:" id="0aT-my-VDU">
                                                                 <font key="font" metaFont="system"/>
                                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -923,7 +923,7 @@
                                                     <rect key="frame" x="0.0" y="33" width="277" height="22"/>
                                                     <subviews>
                                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="63r-Jw-kg6">
-                                                            <rect key="frame" x="-2" y="3" width="73" height="17"/>
+                                                            <rect key="frame" x="-2" y="3" width="73" height="16"/>
                                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" alignment="right" title="domain:" id="zn4-ir-lDs">
                                                                 <font key="font" metaFont="system"/>
                                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -932,9 +932,6 @@
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="edi-e1-DBA">
                                                             <rect key="frame" x="77" y="0.0" width="200" height="22"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="200" id="eWQ-vf-aUq"/>
-                                                            </constraints>
                                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="如:http://image.chochy.cn" bezelStyle="round" id="N2Z-6K-yVn">
                                                                 <font key="font" metaFont="system"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -955,7 +952,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="265" height="21"/>
                                                     <subviews>
                                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tQg-GT-DNC">
-                                                            <rect key="frame" x="-2" y="2" width="73" height="17"/>
+                                                            <rect key="frame" x="-2" y="3" width="73" height="16"/>
                                                             <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="compress:" id="SRt-Kg-Gif">
                                                                 <font key="font" metaFont="system"/>
                                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -980,7 +977,7 @@
                                                             <sliderCell key="cell" lineBreakMode="truncatingMiddle" enabled="NO" state="on" alignment="left" minValue="0.29999999999999999" maxValue="1" doubleValue="1" tickMarkPosition="below" numberOfTickMarks="7" sliderType="linear" id="CTb-Jp-l7P"/>
                                                         </slider>
                                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZC9-c7-9Vv" userLabel="Rate Value">
-                                                            <rect key="frame" x="229" y="2" width="38" height="17"/>
+                                                            <rect key="frame" x="229" y="3" width="38" height="16"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="34" id="rv7-a5-HYz"/>
                                                             </constraints>
@@ -1110,11 +1107,11 @@ DQ
                                 </connections>
                             </button>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Oig-GE-XaY">
-                                <rect key="frame" x="90" y="105" width="301" height="148"/>
+                                <rect key="frame" x="89" y="105" width="302" height="148"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="grayBezel" id="OUA-og-2jv"/>
                             </imageView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="u0l-eL-PGO">
-                                <rect key="frame" x="87" y="44" width="47" height="32"/>
+                                <rect key="frame" x="86" y="44" width="47" height="32"/>
                                 <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSAddTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="SaD-5a-hgm">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
