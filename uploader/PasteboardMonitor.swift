@@ -35,7 +35,8 @@ class PasteboardMonitor {
     
     /// 开启监控
     func open(){
-        timerSource.resume();
+        self.changeCount = -1
+        timerSource.resume()
     }
     
     func close(){
