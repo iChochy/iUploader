@@ -41,6 +41,6 @@
 
 ### 联系方系：  
 > 邮箱：[iChochy@qq.com](mailto:iChochy@qq.com)   
-> 网站：[https://www.ichochy.com](https://www.ichochy.com)  
+> 网站：[https://iuploader.ichochy.com](https://iuploader.ichochy.com)  
 > GitHub： [https://github.com/iChochy/iUploader]( https://github.com/iChochy/iUploader)    
 
