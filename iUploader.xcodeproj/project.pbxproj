@@ -51,6 +51,7 @@
 
 /* Begin PBXFileReference section */
 		7432EE51048378D10A7BB756 /* Pods-iUploader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iUploader.release.xcconfig"; path = "Pods/Target Support Files/Pods-iUploader/Pods-iUploader.release.xcconfig"; sourceTree = "<group>"; };
+		7A24497827A79F610087B5D7 /* iUploader.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = iUploader.entitlements; sourceTree = "<group>"; };
 		7A4D26DE223B4A9E0072F2ED /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7A4D2716223B56BA0072F2ED /* CustomNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNotification.swift; sourceTree = "<group>"; };
 		7A55CD2F223FB038003C1E31 /* CustomSystemServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSystemServices.swift; sourceTree = "<group>"; };
@@ -80,7 +81,6 @@
 		7AF36BA72303BE8300E91032 /* FileStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorageService.swift; sourceTree = "<group>"; };
 		7AF36BA9230BC49100E91032 /* PasteboardUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardUtil.swift; sourceTree = "<group>"; };
 		7AF874D92241E8C900D95B22 /* PasteboardMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardMonitor.swift; sourceTree = "<group>"; };
-		7AF874DB22423FAE00D95B22 /* iUploader.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iUploader.entitlements; sourceTree = "<group>"; };
 		8733C5000677D34B0F1CBF4F /* Pods-iUploader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iUploader.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iUploader/Pods-iUploader.debug.xcconfig"; sourceTree = "<group>"; };
 		DA7D5CF235E8487A7092971D /* Pods_iUploader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iUploader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -164,12 +164,12 @@
 		7ABFC88B2231023900E4FE07 = {
 			isa = PBXGroup;
 			children = (
+				7A24497827A79F610087B5D7 /* iUploader.entitlements */,
 				7ABFC8B52236451A00E4FE07 /* Header.h */,
-				7ABFC8962231023900E4FE07 /* uploader */,
+				7ABFC8962231023900E4FE07 /* iUploader */,
 				7ABFC8952231023900E4FE07 /* Products */,
 				B7A00774F08F266493484337 /* Pods */,
 				219022730B65F6CF9326096B /* Frameworks */,
-				7AF874DB22423FAE00D95B22 /* iUploader.entitlements */,
 			);
 			sourceTree = "<group>";
 		};
@@ -181,7 +181,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		7ABFC8962231023900E4FE07 /* uploader */ = {
+		7ABFC8962231023900E4FE07 /* iUploader */ = {
 			isa = PBXGroup;
 			children = (
 				7A4D26DE223B4A9E0072F2ED /* AppDelegate.swift */,
@@ -196,7 +196,7 @@
 				7ABFC89D2231023C00E4FE07 /* Main.storyboard */,
 				7ABB433A2249D0C1003E6BE6 /* image.xcassets */,
 			);
-			path = uploader;
+			path = iUploader;
 			sourceTree = "<group>";
 		};
 		7ABFC8A72232433700E4FE07 /* model */ = {
@@ -527,16 +527,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = iUploader.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 64RWPFUJYS;
-				ENABLE_HARDENED_RUNTIME = YES;
+				DEVELOPMENT_TEAM = B9JSTUGQUF;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/uploader/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/iUploader/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -550,7 +549,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ichochy.iuploader;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -560,16 +559,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = iUploader.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 64RWPFUJYS;
-				ENABLE_HARDENED_RUNTIME = YES;
+				DEVELOPMENT_TEAM = B9JSTUGQUF;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/uploader/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/iUploader/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -583,7 +581,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ichochy.iuploader;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};

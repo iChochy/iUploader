@@ -1,24 +1,24 @@
 PODS:
-  - HappyDNS (0.3.15)
-  - libminipng (0.5.6)
-  - Qiniu (7.3.2)
+  - HappyDNS (0.3.17)
+  - libminipng (0.0.5)
+  - Qiniu (7.4.4):
+    - HappyDNS (~> 0.3.17)
 
 DEPENDENCIES:
-  - HappyDNS
-  - libminipng
-  - Qiniu
+  - libminipng (= 0.0.5)
+  - Qiniu (= 7.4.4)
 
 SPEC REPOS:
-  trunk:
+  https://github.com/cocoapods/specs.git:
     - HappyDNS
     - libminipng
     - Qiniu
 
 SPEC CHECKSUMS:
-  HappyDNS: 00c15e651a347206e58a20503a32a5564589b56a
-  libminipng: a44c35d06b9d54d6640acdf97f4500c034748abb
-  Qiniu: a248627a07bb8a39c6a11ae8059b7161c363539b
+  HappyDNS: 848ef73e24f2b0e2752064223ce2dc0dd88900ea
+  libminipng: c5f4492bf378d3de8dfa3afd4c4372480f52fa9f
+  Qiniu: 529d25de615c6ad1cb587f9d165a160d98e9fac9
 
-PODFILE CHECKSUM: 616f95107fef44e9f88636a619b607d7c5d00a0b
+PODFILE CHECKSUM: 5662bc86842a38daea094524d11a52c952140e90
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.7.5
