@@ -21,7 +21,7 @@ struct QNConfig: Codable {
         self.accessKey = accessKey
         self.secretKey = secretKey
         self.bucket = bucket
-        self.domain = URL.init(string: domain) ?? URL.init(string: "https://www.ichochy.com")!
+        self.domain = URL.init(string: domain) ?? URL.init(string: "https://ichochy.com")!
         self.rate = rate
         self.compress = compress
     }

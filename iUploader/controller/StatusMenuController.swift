@@ -28,7 +28,7 @@ class StatusMenuController:NSWindow,NSWindowDelegate,NSDraggingDestination {
     
     
     @IBAction func openWeb(_ sender: NSMenuItem) {
-        guard let url = URL(string: "https://www.ichochy.com") else {
+        guard let url = URL(string: "https://ichochy.com") else {
             return
         }
         NSWorkspace.init().open(url)
