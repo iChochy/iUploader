@@ -6,7 +6,7 @@ It is a native software for macOS, using swiftUI development, support for system
 
 Now supports [Cloudflare R2](https://ichochy.com/posts/blog/20250325.html)、[GitHub](https://ichochy.com/posts/blog/20250331.html)、and also [UPYun](https://www.upyun.com/league)
 
-Download: https://file.ichochy.com/iUploader.zip
+Download: [https://file.ichochy.com/iUploader.zip](https://file.ichochy.com/iUploader.zip)
 
 -----
 
@@ -54,7 +54,7 @@ Always free.
 
 ----------
 
-* Blog: https://ichochy.com
-* iUploader: https://ichochy.com/posts/app/20250325.html
-* Download: https://file.ichochy.com/iUploader.zip
+* Blog: [https://ichochy.com](https://ichochy.com)
+* iUploader: [https://soloist.ai/iuploader](https://soloist.ai/iuploader)
+* Download: [https://file.ichochy.com/iUploader.zip](https://file.ichochy.com/iUploader.zip)
 
