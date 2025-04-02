@@ -1,46 +1,60 @@
+#  ![Cloud](https://images.ichochy.com/Cloud.png) iUploader
 
-# ![Cloud](https://images.ichochy.com/Cloud.png)  iUploader
+iUploader a free image bed image uploading tool
 
-### 软件介绍：  
-`iUploader`主要功能将文件上传至七牛云，返回 `Markdown` 格式的链接到剪贴板  
+It is a native software for macOS, using swiftUI development, support for system version 14+, now supports multiple image bed uploading, and will slowly improve the software to add more required image bed uploading.
+
+Now supports [Cloudflare R2](https://ichochy.com/posts/blog/20250325.html)、[GitHub](https://ichochy.com/posts/blog/20250331.html)、and also [UPYun](https://www.upyun.com/league)
+
+Download: https://file.ichochy.com/iUploader.zip
+
+-----
+
+## Function
+
+![](https://cdn.soloist.ai/ac3cda90-34cb-4343-bda4-67625fb626ad/ddf6521b-f2c3-43f5-8592-66216c244dac_1040x1040.webp)
+
+### Multi-gallery upload
+
+Now supports [Cloudflare R2](https://ichochy.com/posts/blog/20250325.html)、[GitHub](https://ichochy.com/posts/blog/20250331.html)、and also [UPYun](https://www.upyun.com/league)
+
+![](https://cdn.soloist.ai/ac3cda90-34cb-4343-bda4-67625fb626ad/b63ddf37-1e7f-4c23-b3c4-554bd6b56d98_1040x1040.webp)
+
+### Multi-gallery management
+
+Multiple galleries to view, share and manage at the same time
+
+![](https://cdn.soloist.ai/ac3cda90-34cb-4343-bda4-67625fb626ad/c6b5e050-4ed4-4c1b-bfd1-bd48c7dbafc9_1040x1040.webp)
+
+### Local compression
+
+You can reduce the file size for image sharing
+
+## Gallery
+
+### Upload
+![](https://cdn.soloist.ai/ac3cda90-34cb-4343-bda4-67625fb626ad/b63ddf37-1e7f-4c23-b3c4-554bd6b56d98_2048x2048.webp)
+
+### List
+![](https://cdn.soloist.ai/ac3cda90-34cb-4343-bda4-67625fb626ad/da028dc4-6f6b-4e21-bdd7-24728cf56db1_2048x2048.webp)
+
+### Grid
+![](https://cdn.soloist.ai/ac3cda90-34cb-4343-bda4-67625fb626ad/88ed64f7-6910-456e-b21d-368058385938_2048x2048.webp)
+
+## Frequently Asked Questions
+#### What cloud services are supported?
+Now supports [Cloudflare R2](https://ichochy.com/posts/blog/20250325.html)、[GitHub](https://ichochy.com/posts/blog/20250331.html)、and also [UPYun](https://www.upyun.com/league)
 
 
-### 功能介绍：  
-1. 图片本地压缩
-2. 图片右键上传
-3. 图片截取上传
-4. 图片复制上传
-5. 图片拖拽上传
-6. https加密上传
+#### What sharing methods are supported?
+URL、HTML、Markdown
 
-### 开发：  
-继承七牛云SDK，使用`Swift`开发，App自签上传凭证，自动选择存储区域，通过https加密上传。  
+### Is it free?
+Always free.
 
-### 截图：  
-**菜单**  
-![15665509097289961](https://images.ichochy.com/15665509097289961.png)  
+----------
 
-**配置**  
-![15665510536547632](https://images.ichochy.com/15665510536547632.png)  
-
-
-### 更新：  
-1. 剪贴板监控，截图自动上传
-2. 引入`pngquant`， 提高`png`图片的压缩比，减少流量的损失，快速完成图片的加载
-3. 添加历史记录，方便随时查看使用上传文件，保留十条
-4. 完善文件上传流程，不限于图片的上传
-5. 完善多文件上传，统一完成上传
-6. 优化进度加载展示，菜单逻辑调整
-
-### 下载：  
-[iUploader.dmg-GitHub](https://github.com/iChochy/iUploader/releases/download/2.0.5/iUploader.dmg)   
-[iUploader.dmg-七牛云](https://files.ichochy.com/iUploader.dmg)  
-[https://github.com/iChochy/iUploader/releases/download/2.0.5/iUploader.dmg](https://github.com/iChochy/iUploader/releases/download/2.0.5/iUploader.dmg)   
-
----
-
-### 联系方系：  
-> 邮箱：[iChochy@qq.com](mailto:iChochy@qq.com)   
-> 网站：[https://iuploader.ichochy.com](https://iuploader.ichochy.com)  
-> GitHub： [https://github.com/iChochy/iUploader]( https://github.com/iChochy/iUploader)    
+* Blog: https://ichochy.com
+* iUploader: https://ichochy.com/posts/app/20250325.html
+* Download: https://file.ichochy.com/iUploader.zip
 
