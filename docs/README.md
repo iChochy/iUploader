@@ -10,7 +10,7 @@ Download: [https://file.ichochy.com/iUploader.zip](https://file.ichochy.com/iUpl
 
 -----
 
-## Function
+## Features
 
 ![](https://cdn.soloist.ai/ac3cda90-34cb-4343-bda4-67625fb626ad/ddf6521b-f2c3-43f5-8592-66216c244dac_1040x1040.webp)
 
